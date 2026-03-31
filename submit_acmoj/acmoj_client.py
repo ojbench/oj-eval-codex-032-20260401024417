@@ -50,7 +50,7 @@ class ACMOJClient:
                 response = requests.post(url, headers=self.headers, data=data, timeout=10)
             else:
                 print(f"Unsupported HTTP method: {method}")
-                return None
+        return None
 
             if response.status_code == 204:
                 return {"status": "success", "message": "Operation successful"}
@@ -89,6 +89,13 @@ class ACMOJClient:
         if result and 'id' in result:
             self._save_submission_id(result['id'])
 
+        return result
+
+    def submit_code(self, problem_id: int, language: str, code_text: str) -> Optional[Dict]:
+        data = {"language": language, "code": code_text}
+        result = self._make_request("POST", f"/problem/{problem_id}/submit", data=data)
+        if result and 'id' in result:
+            self._save_submission_id(result['id'])
         return result
 
     def get_submission_detail(self, submission_id: int) -> Optional[Dict]:
