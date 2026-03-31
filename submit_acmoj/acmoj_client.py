@@ -50,7 +50,7 @@ class ACMOJClient:
                 response = requests.post(url, headers=self.headers, data=data, timeout=10)
             else:
                 print(f"Unsupported HTTP method: {method}")
-        return None
+                return None
 
             if response.status_code == 204:
                 return {"status": "success", "message": "Operation successful"}
