@@ -1,0 +1,10 @@
+# Ignore build artifacts and local binaries
+main_test
+sample
+*.out
+a.out
+*.o
+*.exe
+*.obj
+*.log
+*.tmp
